@@ -1,31 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
 
 /**
- *
- * @author Usuario
+ * CLASE: Municion Representa el stock de munición por calibre y tipo. SUCAMEC
+ * controla la cantidad y tipo de munición (Ley 30299).
  */
 public class Municion {
 
-    private String tipo;       // "PLOMO", "GOMA", "FOGUEO"
-    private String calibre;    // ".38", "9mm", ".40"
-    private int cantidad;   // stock actual en unidades
-    private String lote;       // número de lote del proveedor
-    private String fechaIngreso;
+    // ── ATRIBUTOS ────────────────────────────────────────────
+    private String tipo;         // PLOMO, GOMA, FOGUEO
+    private String calibre;      // 9mm, .38, .45
+    private int cantidad;     // Stock actual en unidades (rds)
+    private String lote;         // Número de lote del proveedor
 
-    public Municion(String tipo, String calibre,
-            int cantidad, String lote, String fechaIngreso) {
+    // ── CONSTRUCTOR ──────────────────────────────────────────
+    public Municion(String tipo, String calibre, int cantidad, String lote) {
         this.tipo = tipo;
         this.calibre = calibre;
         this.cantidad = cantidad;
         this.lote = lote;
-        this.fechaIngreso = fechaIngreso;
     }
 
-    // Getters
+    // ── GETTERS ──────────────────────────────────────────────
     public String getTipo() {
         return tipo;
     }
@@ -42,31 +37,33 @@ public class Municion {
         return lote;
     }
 
-    public String getFechaIngreso() {
-        return fechaIngreso;
+    // ── MÉTODOS DE NEGOCIO ────────────────────────────────────
+    /**
+     * Agrega unidades al stock (cuando llega un nuevo lote). Usa un acumulador:
+     * cantidad = cantidad + extra
+     */
+    public void agregarStock(int extra) {
+        this.cantidad = this.cantidad + extra;
     }
 
-    // La cantidad SÍ cambia con ingresos y salidas
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    // Incrementar stock (ingreso)
-    public void agregarStock(int cantidad) {
-        this.cantidad += cantidad;
-    }
-
-    // Reducir stock (salida) — valida que no quede negativo
-    public boolean retirarStock(int cantidad) {
-        if (cantidad > this.cantidad) {
+    /**
+     * Retira unidades del stock (cuando se asigna un arma con munición).
+     * Primero verifica que haya suficiente stock (condicional). Retorna true si
+     * se pudo retirar, false si no hay suficiente.
+     */
+    public boolean retirarStock(int pedido) {
+        if (pedido > this.cantidad) {
             return false; // no hay suficiente stock
         }
-        this.cantidad -= cantidad;
+        this.cantidad = this.cantidad - pedido;
         return true;
     }
 
+    /**
+     * toString: para mostrar en JComboBox y tablas.
+     */
     @Override
     public String toString() {
-        return calibre + " " + tipo + " — Stock: " + cantidad + " und | Lote: " + lote;
+        return calibre + " " + tipo + " | Stock: " + cantidad + " rds | Lote: " + lote;
     }
 }

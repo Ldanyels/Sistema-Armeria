@@ -1,41 +1,48 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
 
 /**
+ * CLASE: Asignacion Registra la entrega de un arma a un efectivo de seguridad.
+ * Equivale al "Acta de Entrega" que exige SUCAMEC.
  *
- * @author Usuario
+ * Contiene referencias a objetos Arma (uso de objetos dentro de objetos = POO).
  */
 public class Asignacion {
 
-    private int id;
-    private Arma arma;// el arma entregada
-    private Agente agente;// quién la recibe
-    private int municionEnviada; // unidades de munición entregadas
-    private String fechaSalida;// "DD/MM/YYYY HH:mm"
-    private String fechaRetorno;// null si aún no devolvió
-    private String docSustento;// número de orden de servicio
-    private String puesto;// lugar de destino del agente
-    private boolean activa;// true = no devuelta aún
-    private String observaciones;
+    // ── ATRIBUTOS ────────────────────────────────────────────
+    private int id;                // Número único de asignación
+    private Arma arma;             // El arma que se entregó (objeto Arma)
+    private String nombreAgente;      // Nombre del efectivo que recibe el arma
+    private String dniAgente;         // DNI del efectivo
+    private String licenciaSucamec;   // Licencia SUCAMEC del efectivo
+    private int municionEntregada; // Cuántas balas se entregaron
+    private String fechaSalida;       // Fecha y hora de salida
+    private String puestoDestino;     // A qué puesto va el efectivo
+    private String docSustento;       // N° de orden de servicio (obligatorio SUCAMEC)
+    private boolean activa;           // true = aún no devuelta, false = ya devuelta
+    private String fechaRetorno;      // Fecha de devolución (vacío si aún activa)
+    private int municionDevuelta;  // Munición que regresó con el arma
+    private String observaciones;     // Observaciones al devolver
 
-    public Asignacion(int id, Arma arma, Agente agente,
-            int municionEnviada, String fechaSalida,
-            String docSustento, String puesto) {
+    // ── CONSTRUCTOR ──────────────────────────────────────────
+    public Asignacion(int id, Arma arma, String nombreAgente, String dniAgente,
+            String licenciaSucamec, int municionEntregada,
+            String fechaSalida, String puestoDestino, String docSustento) {
         this.id = id;
         this.arma = arma;
-        this.agente = agente;
-        this.municionEnviada = municionEnviada;
+        this.nombreAgente = nombreAgente;
+        this.dniAgente = dniAgente;
+        this.licenciaSucamec = licenciaSucamec;
+        this.municionEntregada = municionEntregada;
         this.fechaSalida = fechaSalida;
+        this.puestoDestino = puestoDestino;
         this.docSustento = docSustento;
-        this.puesto = puesto;
-        this.activa = true;
-        this.fechaRetorno = null;
+        this.activa = true;       // inicia como activa
+        this.fechaRetorno = "";
+        this.municionDevuelta = 0;
+        this.observaciones = "";
     }
 
-    // Getters
+    // ── GETTERS ──────────────────────────────────────────────
     public int getId() {
         return id;
     }
@@ -44,42 +51,67 @@ public class Asignacion {
         return arma;
     }
 
-    public Agente getAgente() {
-        return agente;
+    public String getNombreAgente() {
+        return nombreAgente;
     }
 
-    public int getMunicionEnviada() {
-        return municionEnviada;
+    public String getDniAgente() {
+        return dniAgente;
+    }
+
+    public String getLicenciaSucamec() {
+        return licenciaSucamec;
+    }
+
+    public int getMunicionEntregada() {
+        return municionEntregada;
     }
 
     public String getFechaSalida() {
         return fechaSalida;
     }
 
-    public String getFechaRetorno() {
-        return fechaRetorno;
+    public String getPuestoDestino() {
+        return puestoDestino;
     }
 
     public String getDocSustento() {
         return docSustento;
     }
 
-    public String getPuesto() {
-        return puesto;
-    }
-
     public boolean isActiva() {
         return activa;
+    }
+
+    public String getFechaRetorno() {
+        return fechaRetorno;
+    }
+
+    public int getMunicionDevuelta() {
+        return municionDevuelta;
     }
 
     public String getObservaciones() {
         return observaciones;
     }
 
-    // Registrar devolución
-    public void registrarDevolucion(String fechaRetorno, String obs) {
+    /**
+     * Registra la devolución del arma. Se llama cuando el efectivo regresa el
+     * arma al almacén.
+     */
+    public void cerrarDevolucion(String fechaRetorno, int municionDevuelta, String obs) {
         this.fechaRetorno = fechaRetorno;
+        this.municionDevuelta = municionDevuelta;
         this.observaciones = obs;
-        this.activa = false;
+        this.activa = false; // la asignación queda cerrada
+    }
+
+    /**
+     * toString: para mostrar en el JComboBox de devoluciones.
+     */
+    @Override
+    public String toString() {
+        return "ID:" + id + " | " + arma.getNumSerie()
+                + " → " + nombreAgente + " | Sal: " + fechaSalida;
     }
 }

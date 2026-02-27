@@ -4,22 +4,44 @@
  */
 package vista;
 
+import servicio.Almacen;
+import modelo.Arma;
+import modelo.Municion;
 /**
  *
  * @author Usuario
  */
-
-
 public class LoginForm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form LoginForm
-     * 
-     */
+    private Almacen almacen;
     
     public LoginForm() {
         initComponents();
+        setTitle("Sistema de Control de Armería - SUCAMEC");
+        setLocationRelativeTo(null); // centrar en pantalla
+
+        // Crear el almacén con datos de demostración
+        almacen = new Almacen();
+        cargarDatosDemostracion();
     }
+    private void cargarDatosDemostracion() {
+        // Registrar 3 armas de ejemplo
+        almacen.registrarArma(new Arma(
+            "GLK-001", "Glock", "9mm", "PISTOLA", "SUCC-2024-001", "01/01/2024"));
+        almacen.registrarArma(new Arma(
+            "BRT-002", "Beretta", "9mm", "PISTOLA", "SUCC-2024-002", "01/01/2024"));
+        almacen.registrarArma(new Arma(
+            "SW-003", "Smith&Wesson", ".38", "REVOLVER", "SUCC-2024-003", "15/01/2024"));
+
+        // Registrar munición de ejemplo
+        almacen.registrarMunicion(new Municion("PLOMO", "9mm",  500, "LOTE-001"));
+        almacen.registrarMunicion(new Municion("PLOMO", ".38",  300, "LOTE-002"));
+    }
+    
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,21 +54,19 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtUsuario = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         btnIngresar = new javax.swing.JButton();
         lblMensaje = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Sistema de Control de Armería");
+        jLabel1.setText("Sistema de Control de Armería - SUCAMEC");
 
         jLabel2.setText("Usuario");
 
-        jLabel3.setText("Contraseña:");
-
-        txtPassword.setText("jPasswordField1");
+        jLabel3.setText("Contraseña");
 
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -60,52 +80,75 @@ public class LoginForm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 66, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(btnIngresar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
-                        .addComponent(lblMensaje))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(62, 62, 62)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(124, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                            .addComponent(txtPassword)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addComponent(btnIngresar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel1)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
                 .addComponent(btnIngresar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblMensaje)
-                .addGap(42, 42, 42))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        // TODO add your handling code here:
+         String user = txtUsuario.getText().trim();
+        String pass = new String(txtPassword.getPassword()).trim();
+
+        // Validar campos vacíos
+        if (user.isEmpty() || pass.isEmpty()) {
+            lblMensaje.setForeground(java.awt.Color.RED);
+            lblMensaje.setText("⚠ Ingrese usuario y contraseña.");
+            return;
+        }
+
+        // Credenciales válidas (en sistema real estarían en base de datos)
+        boolean esAdmin  = user.equals("admin")  && pass.equals("admin123");
+        boolean esArmero = user.equals("armero") && pass.equals("armero123");
+
+        if (esAdmin || esArmero) {
+            // Abrir ventana principal pasando el almacén
+            MainForm ventana = new MainForm(almacen, user);
+            ventana.setVisible(true);
+            this.dispose(); // cerrar el login
+        } else {
+            lblMensaje.setForeground(java.awt.Color.RED);
+            lblMensaje.setText("✗ Usuario o contraseña incorrectos.");
+            txtPassword.setText("");
+        }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**

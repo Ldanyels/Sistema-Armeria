@@ -23,13 +23,100 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lblBienvenida" min="-2" pref="354" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="btnDevolucion" max="32767" attributes="0"/>
+                  <Component id="btnArma" pref="126" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace pref="29" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btnMunicion" max="32767" attributes="0"/>
+                  <Component id="btnInventario" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btnSalida" max="32767" attributes="0"/>
+                  <Component id="btnAsignaciones" pref="148" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="btnLogout" min="-2" pref="109" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="203" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lblBienvenida" min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" max="-2" attributes="0">
+                  <Component id="btnArma" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                  <Component id="btnMunicion" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                  <Component id="btnSalida" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="34" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnDevolucion" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="btnInventario" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="btnAsignaciones" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <Component id="btnLogout" min="-2" pref="58" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="lblBienvenida">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="muestra usuario"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnArma">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ingresar Arma"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnMunicion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Registrar Municion"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnSalida">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Asignar Arma"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnDevolucion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Devolucion"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnInventario">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ver Inventario"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnAsignaciones">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ver Asignaciones"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnLogout">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cerrar Sesion"/>
+      </Properties>
+    </Component>
+  </SubComponents>
 </Form>

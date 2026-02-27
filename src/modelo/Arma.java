@@ -1,37 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
 
 /**
- *
- * @author Usuario
+ * CLASE: Arma Representa un arma de fuego registrada en el sistema. Aplica
+ * encapsulamiento (atributos privados + getters/setters).
  */
 public class Arma {
-    // Atributos exigidos por Ley 30299 (SUCAMEC)
 
-    private String numSerie;
-    private String marca;
-    private String modelo;
-    private String calibre;
-    private String numTarjetaSucamec;
-    private String estado;        // "DISPONIBLE" | "ASIGNADA" | "MANTENIMIENTO"
-    private String fechaIngreso;
+    // ── ATRIBUTOS (todos privados = encapsulamiento) ──────────
+    private String numSerie;          // Número de serie del arma
+    private String marca;             // Marca: Glock, Beretta, etc.
+    private String calibre;           // Calibre: 9mm, .38, .45
+    private String tipoArma;          // PISTOLA, REVOLVER, ESCOPETA
+    private String numTarjetaSucamec; // N° tarjeta SUCAMEC (obligatorio por Ley 30299)
+    private String estado;            // DISPONIBLE o ASIGNADA
+    private String fechaIngreso;      // Fecha en que entró al sistema
 
-    // Constructor
-    public Arma(String numSerie, String marca, String modelo,
-            String calibre, String numTarjetaSucamec, String fechaIngreso) {
+    // ── CONSTRUCTOR ──────────────────────────────────────────
+    public Arma(String numSerie, String marca, String calibre,
+            String tipoArma, String numTarjetaSucamec, String fechaIngreso) {
         this.numSerie = numSerie;
         this.marca = marca;
-        this.modelo = modelo;
         this.calibre = calibre;
+        this.tipoArma = tipoArma;
         this.numTarjetaSucamec = numTarjetaSucamec;
-        this.estado = "DISPONIBLE"; // estado inicial
         this.fechaIngreso = fechaIngreso;
+        this.estado = "DISPONIBLE"; // toda arma que ingresa empieza disponible
     }
 
-    // Getters
+    // ── GETTERS (para leer los atributos) ────────────────────
     public String getNumSerie() {
         return numSerie;
     }
@@ -40,12 +36,12 @@ public class Arma {
         return marca;
     }
 
-    public String getModelo() {
-        return modelo;
-    }
-
     public String getCalibre() {
         return calibre;
+    }
+
+    public String getTipoArma() {
+        return tipoArma;
     }
 
     public String getNumTarjetaSucamec() {
@@ -60,15 +56,25 @@ public class Arma {
         return fechaIngreso;
     }
 
-    // Setter solo para estado (el único que cambia en operación)
+    // ── SETTER (solo estado puede cambiar) ───────────────────
     public void setEstado(String estado) {
         this.estado = estado;
     }
 
-    // Método utilitario — para mostrar en tablas Swing
+    /**
+     * Método de utilidad: indica si el arma puede ser asignada. SUCAMEC exige
+     * que el arma esté DISPONIBLE antes de asignarla.
+     */
+    public boolean estaDisponible() {
+        return "DISPONIBLE".equals(this.estado);
+    }
+
+    /**
+     * toString: permite mostrar el arma en un JComboBox o en texto.
+     */
     @Override
     public String toString() {
-        return numSerie + " | " + marca + " " + modelo
-                + " | Cal. " + calibre + " | " + estado;
+        return "[" + numSerie + "] " + marca + " | Cal." + calibre
+                + " | " + tipoArma + " | " + estado;
     }
 }
